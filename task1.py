@@ -1,7 +1,6 @@
 import sqlite3
 import json
 
-# Note: Since no real URL was provided, I am mocking the API response data.
 def fetch_books_data():
     # In a real project, I would use: response = requests.get('api_url').json()
     return [
@@ -11,11 +10,9 @@ def fetch_books_data():
     ]
 
 def save_to_db(books):
-    # Connect to SQLite (it creates the file 'books.db' automatically)
     conn = sqlite3.connect("books.db")
     cursor = conn.cursor()
     
-    # Simple SQL to create a table if it doesn't exist
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS books (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,7 +22,6 @@ def save_to_db(books):
         )
     ''')
     
-    # Loop through the list and insert each book
     print("Saving books to database...")
     for book in books:
         cursor.execute("INSERT INTO books (title, author, year) VALUES (?, ?, ?)", 
