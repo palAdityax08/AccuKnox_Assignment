@@ -11,18 +11,16 @@ student_data = [
 ]
 
 def analyze_scores():
-    # Load data into a DataFrame (Standard tabular format)
+    # Load data into a DF
     df = pd.DataFrame(student_data)
     
-    # Calculate Average
     average_score = df["score"].mean()
     print(f"The average score is: {average_score}")
     
-    # Create the Bar Chart
+    # Creating Bar Chart
     plt.figure(figsize=(8, 5))
     plt.bar(df["name"], df["score"], color="skyblue")
     
-    # Add a line for the average
     plt.axhline(y=average_score, color='red', linestyle='--', label=f"Avg: {average_score}")
     
     plt.title("Student Test Scores")
